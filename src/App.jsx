@@ -4,23 +4,7 @@ import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import Message from './Message.jsx';
 
-// const data =
-//     { currentUser: {
-//       name: 'Bob'
-//     }, // optional. if currentUser is not defined, it means the user is Anonymous
-//     messages: [
-//     {
-//       id: 1,
-//       username: 'Bob',
-//       content: 'Has anyone seen my marbles?'
-//     },
-//     {
-//       id: 2,
-//       username: 'Anonymous',
-//       content: 'No, I think you lost them. You lost your marbles Bob. You lost them for good.'
-//     }
-//   ]
-// }
+
 
 class App extends Component {
   constructor(props) {
@@ -62,10 +46,24 @@ class App extends Component {
         <Navbar />
         <MessageList messages={this.state.messages} />
         <Message />
-        <ChatBar currentUser={this.state.currentUser} />
+        <ChatBar currentUser={this.state.currentUser} addNewMessage={this.addNewMessage}/>
       </div>
     );
   }
+}
+
+function addNewMessage(event)  {
+  const oldMessages = this.state.messages;
+  if (event.key === 'Enter') {
+    let newContent = event.target;
+    const newMessages = [
+      ... oldMessages,
+      { username: this.state.currentUser.name,
+        content: newContent.value
+      }
+    ]
+  this.setState({messages: newMessages})
+  newContent.value = '';}
 }
 
 class Navbar extends Component {
