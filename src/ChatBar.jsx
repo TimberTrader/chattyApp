@@ -23,6 +23,10 @@ ChatBar.propTypes = {
     if(typeof obj === 'object') return null;
     throw Error(`Current user is expecting an object but got ${typeof obj}`);
   },
+  addNewMessage: function(obj) {
+    if(typeof obj === 'object') return null;
+    throw Error(`CaddNewMessage is expecting an object but got ${typeof obj}`);
+  }
 }
 
 export default ChatBar;
