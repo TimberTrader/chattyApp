@@ -7,12 +7,12 @@ class ChatBar extends Component {
       <footer className="chatbar">
         <input
         className="chatbar-username"
-        placeholder="Your name and hit enter to change (Optional)"
-        onKeyPress={this.props.eventHandler}
+        placeholder="Ur name and TAB to enter message (Optional)"
+        onKeyUp={this.props.changeName}
         // defaultValue={ this.props.currentUser.name }
         />
         <input
-        onKeyPress={this.props.eventHandler}
+        onKeyPress={this.props.postChat}
         className="chatbar-message"
         placeholder="Type a message and hit ENTER" />
       </footer>
@@ -21,9 +21,13 @@ class ChatBar extends Component {
 }
 
 ChatBar.propTypes = {
-  eventHandler: function(obj) {
+  postChat: function(obj) {
     if(typeof obj === 'object') return null;
-    throw Error(`Current user is expecting an object but got ${typeof obj}`);
+    throw Error(`expecting an object but got ${typeof obj}`);
+  },
+  changeName: function(obj) {
+    if(typeof obj === 'object') return null;
+    throw Error(`expecting an object but got ${typeof obj}`);
   },
   // addNewMessage: function(obj) {
   //   if(typeof obj === 'object') return null;

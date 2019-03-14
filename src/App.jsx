@@ -12,7 +12,7 @@ class App extends Component {
       currentUser: {name: 'Anon'},
       messages: []
     };
-    this.eventHandler = this.eventHandler.bind(this);
+
     this.connection = new WebSocket('ws://localhost:3001');
 }
   
@@ -46,19 +46,30 @@ class App extends Component {
     }
   }
     
-    eventHandler(event) {
+    changeName = (event) => {
       if (event.key === 'Enter') {
-        console.log(event.target.className);
-        if (event.target.className === 'chatbar-message') {
+        console.log(event.target.value)
+        let lastUsername = this.state.currentUser.name;
+        let newUsername = event.target.value;
+        console.log(newUsername)
+        this.setState( {currentUser: {name: newUsername}}, () => {
           let newJSONContent = {
+            type: 'postNotification',
+            content: `${lastUsername} changed their username to ${newUsername}`
+          }
+        })
+      }
+    }
+
+    postChat = (event) => {
+      if (event.key === 'Enter') {
+          let newJSONContent = {
+            type: 'postMessage',
             username: this.state.currentUser.name,
             content: event.target.value
           }
           console.log('logdata from message' +newJSONContent)
           this.connection.send(JSON.stringify(newJSONContent));
-          event.target.value = ''
-          }
-          this.setState( {currentUser: {name: event.target.value} })
      }
     }
     render() {
@@ -71,7 +82,8 @@ class App extends Component {
           <Message />
           <ChatBar
             currentUser={this.state.currentUser}
-            eventHandler={this.eventHandler}
+            postChat={this.postChat}
+            changeName={this.changeName}
             />
         </div>
       );
