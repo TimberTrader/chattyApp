@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types';
 
+/*renders chatbar - allows for TAB (preffered),
+ENTER or 'click in -message' to trigger name change event*/
 class ChatBar extends Component {
   changeNameOnEnter = (event) => {
     if (event.key === 'Enter') {
@@ -14,7 +15,7 @@ class ChatBar extends Component {
         <input
         className="chatbar-username"
         placeholder="Ur name and TAB to enter message (Optional)"
-        onKeyUp={this.changeNameOnEnter}
+        onKeyPress={this.changeNameOnEnter}
         onBlur={this.props.changeName}
         />
         <input
@@ -26,6 +27,7 @@ class ChatBar extends Component {
   }
 }
 
+//  eliminates validation errors on props (replaces react proptypes)
 ChatBar.propTypes = {
   postChat: function(obj) {
     if(typeof obj === 'object') return null;
@@ -35,14 +37,6 @@ ChatBar.propTypes = {
     if(typeof obj === 'object') return null;
     throw Error(`expecting an object but got ${typeof obj}`);
   },
-  // addNewMessage: function(obj) {
-  //   if(typeof obj === 'object') return null;
-  //   throw Error(`addNewMessage is expecting an object but got ${typeof obj}`);
-  // },
-  // addNewUser: function(obj) {
-  //   if(typeof obj === 'object') return null;
-  //   throw Error(`addNewUser is expecting an object but got ${typeof obj}`);
-  // }
 }
 
 export default ChatBar;

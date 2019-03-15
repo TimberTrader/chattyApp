@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+// renders nav bar with user count display
 class Navbar extends Component {
   render() {
     return (
@@ -11,6 +12,7 @@ class Navbar extends Component {
   }
 }
 
+//  eliminates validation errors on props (replaces react proptypes)
 Navbar.propTypes = {
     userCount: function(obj) {
       if(typeof obj === 'object') return null;

@@ -1,12 +1,11 @@
-/* eslint-disable no-console */
 import React, {Component} from 'react';
 import Message from './Message.jsx';
 
+/* iterates over [{messages} either Messages or Notifications]
+ rendering each to dispaly container */
 class MessageList extends Component {
   render() {
-    console.log(this.props.messages)
     let messageDetails = this.props.messages.map(details => {
-      console.log(details)
       switch(details.type) {
         case 'incomingMessage':
           return <Message
@@ -20,14 +19,11 @@ class MessageList extends Component {
             name='notification'
             content={details.content}
           />
-        case 'activeUsers':
-         return;
         default:
          throw Error('no type')
       }
     })
-    
-      
+     
     return (
       <main className="messages">
          { messageDetails }
@@ -36,9 +32,9 @@ class MessageList extends Component {
     }
   }
 
-
 export default MessageList;
 
+//  eliminates validation errors on props (replaces react proptypes)
 MessageList.propTypes = {
   messages: function(obj) {
     if(typeof obj === 'object') return null;

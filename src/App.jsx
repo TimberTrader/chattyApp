@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, {Component} from 'react';
 
 import ChatBar from './ChatBar.jsx';
@@ -6,6 +5,7 @@ import MessageList from './MessageList.jsx';
 import Message from './Message.jsx';
 import Navbar from './Navbar.jsx';
 
+/* Parent class */
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +14,13 @@ class App extends Component {
       messages: [],
       users: 0
     };
-
+    // sets new web socket for each instance of App
     this.connection = new WebSocket('ws://localhost:3001');
   }
 
   componentDidMount() {
-
+    /*on load - sends welcome notification w/ brief instruction for 
+    optimal way to begin chat*/ 
     setTimeout(() => {
       const newMessage = {
         type: 'incomingNotification',
@@ -29,14 +30,18 @@ class App extends Component {
       const messages = this.state.messages.concat(newMessage)
       this.setState({messages: messages})
     }, 500);
-
+    //  sets event listener on messages from server
     this.connection.onopen = () => {
       console.log('we have something going on')
     };
-
+    
+    // recieves messages -- produces new object
     this.connection.onmessage = (event) => {
       const incomingEvent = JSON.parse(event.data);
 
+      /* checks if message contains user count sets state of user count ...
+      otherwise updates [{messages}] with chat messages and/or notifications ...
+      sets state for [{messages}]*/
       if (incomingEvent.type === 'activeUsers') {
         this.setState( {users: incomingEvent.count} )
       } else {
@@ -46,11 +51,11 @@ class App extends Component {
            incomingEvent
          ]
        this.setState({messages: newMessages});
-      
       }
     }
   }
-    
+    /* updates state IF user changes name (default is anon) ...
+     send notification to all users who are logged on of name change*/
     changeName = (event) => {
         let lastUsername = this.state.currentUser.name;
         let newUsername = event.target.value;
@@ -65,7 +70,8 @@ class App extends Component {
           this.connection.send(JSON.stringify(newJSONContent));
         })
     }
-
+    /* updates state WHEN user adds a chat message (content) ...
+     sends thier name an d content to all users who are logged on of name change*/
     postChat = (event) => {
       if (event.key === 'Enter') {
           let newJSONContent = {
@@ -77,7 +83,8 @@ class App extends Component {
           event.target.value = '';
      }
     }
-  
+    /* sends props and/or function s to children ...
+     renders all elements tio single page app*/
     render() {
       return (
         <div>
