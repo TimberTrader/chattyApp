@@ -1,7 +1,9 @@
 # chattyApp
 a project for LhL Web Dev Bootcamp (winter 2019
 
-chattyApp is a single page application (SPA) allowing connected users to chat through text in real time. 
+chattyApp is a single page application (SPA) allowing connected users to chat through text in real time.
+
+
 
 ## The App
 Multiple users can interact with one another in real time. 
@@ -22,7 +24,7 @@ chattyApp demonstrated an implementation of Websockets to enable real time commu
 Using  JSX I built a number of React components that rendered a single page application.
 SPA’s dynamically rewrite the current page rather than loading entire new pages from a server.
 
-This project was built over three days. It also demonstrates the use of .git and Github in managing a project for a single developer. Inadvertently, a significant rework of the version control was undertaken at the end in order to merge two existing repositories into the one you are currently visiting. An excellent learning opportunity which resulted in much of the commit history being preserved.
+This project was built over three days. It also demonstrates the use of .git and Github in managing a project for a single developer. Inadvertently, a significant rework of the version control was undertaken at the end in order to merge two existing repositories into the one you are currently visiting. An excellent learning opportunity which resulted in the commit history being preserved.
 
 ## Getting started
 Chatty App requires two servers: one to manage the real time communication and the other to send the app to the client.
@@ -30,9 +32,9 @@ Each server will listen on differnet ports and will pass JSON ommunication betwe
 
 ### For each folder (server):
  
--> Install all dependencies (using the npm install command)
--> Run the web server using the npm run start command in the terminal while inside the folder directory.
--> you can connect multiple browser tabs and/or mtiple browsers to localhost:3000 connect as a client.
+* Install all dependencies (using the npm install command)
+* Run the web server using the npm run start command in the terminal while inside the folder directory.
+---> you can connect multiple browser tabs and/or multiple browsers to localhost:3000 connect as a client.
 
 #### Chatty Client Dependencies
 
