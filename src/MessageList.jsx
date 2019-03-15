@@ -20,8 +20,10 @@ class MessageList extends Component {
             name='notification'
             content={details.content}
           />
+        case 'activeUsers':
+         return;
         default:
-        throw Error('no type')
+         throw Error('no type')
       }
     })
     

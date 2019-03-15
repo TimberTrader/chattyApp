@@ -16,10 +16,14 @@ class Message extends Component {
 }
 
 Message.propTypes = {
-  messageDetails: function(obj) {
+  name: function(obj) {
     if(typeof obj === 'object') return null;
     throw Error(`messageDetails is expecting an object but got ${typeof obj}`);
   },
+   content: function(obj) {
+     if(typeof obj === 'object') return null;
+     throw Error(`messageDetails is expecting an object but got ${typeof obj}`);
+  }
 }
 
 
