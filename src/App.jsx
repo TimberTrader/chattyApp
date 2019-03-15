@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount() {
 
     setTimeout(() => {
-      const newMessage = {id: 3, username: 'Michelle', content: 'Hello there!'};
+      const newMessage = {type: 'incomingMessage', id: 1, username: 'Michelle', content: 'Welcome to ChattyApp!'};
       const messages = this.state.messages.concat(newMessage)
       this.setState({messages: messages})
     }, 500);
@@ -29,36 +29,30 @@ class App extends Component {
     };
 
     this.connection.onmessage = (event) => {
-      let inJSON = JSON.parse(event.data);
-      let newContent = {
-       id: inJSON.id,
-       username: inJSON.username,
-       content: inJSON.content
-      };
-     console.log(newContent);
+      const newMessage = JSON.parse(event.data);
+      console.log(newMessage)
 
      const oldMessages = this.state.messages;
      const newMessages = [
         ...oldMessages,
-        newContent
+        newMessage
       ]
     this.setState({messages: newMessages});
     }
   }
     
     changeName = (event) => {
-      if (event.key === 'Enter') {
-        console.log(event.target.value)
         let lastUsername = this.state.currentUser.name;
         let newUsername = event.target.value;
-        console.log(newUsername)
-        this.setState( {currentUser: {name: newUsername}}, () => {
+        if (lastUsername === newUsername) return;
+        this.setState({currentUser: {name: newUsername}}, () => {
           let newJSONContent = {
             type: 'postNotification',
             content: `${lastUsername} changed their username to ${newUsername}`
           }
+          console.log(newJSONContent)
+          this.connection.send(JSON.stringify(newJSONContent));
         })
-      }
     }
 
     postChat = (event) => {
@@ -68,7 +62,7 @@ class App extends Component {
             username: this.state.currentUser.name,
             content: event.target.value
           }
-          console.log('logdata from message' +newJSONContent)
+          console.log('logdata from message' + newJSONContent)
           this.connection.send(JSON.stringify(newJSONContent));
      }
     }

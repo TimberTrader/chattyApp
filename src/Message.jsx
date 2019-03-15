@@ -8,7 +8,7 @@ class Message extends Component {
       <span className='message-username'>{ this.props.name }</span>
       <span className='message-content'>{ this.props.content }</span>
     </div>
-    // <div className="message system">
+    // <div className="message system">npm start
       // Anonymous1 changed their name to nomnom.
     // </div>
     )

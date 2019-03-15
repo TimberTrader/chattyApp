@@ -2,13 +2,20 @@ import React, {Component} from 'react';
 // import PropTypes from 'prop-types';
 
 class ChatBar extends Component {
+  changeNameOnEnter = (event) => {
+    if (event.key === 'Enter') {
+      this.props.changeName(event)
+    }
+  }
+
   render() { 
     return (
       <footer className="chatbar">
         <input
         className="chatbar-username"
         placeholder="Ur name and TAB to enter message (Optional)"
-        onKeyUp={this.props.changeName}
+        onKeyUp={this.changeNameOnEnter}
+        onBlur={this.props.changeName}
         // defaultValue={ this.props.currentUser.name }
         />
         <input
