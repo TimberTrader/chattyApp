@@ -18,7 +18,7 @@ and they can change names anytime and still stay connected to the ongoiing chat.
 * **TAB over or move your mouse directly into the chat field and type away.**
 * There are no character limits so tell a long story or a short one all the possibilities are is open to you.
 
-![chattyApp in action] (https://github.com/TimberTrader/chattyApp/blob/master/Screen%20Shot%202019-03-14%20at%2011.12.56%20PM.png)
+![chattyApp in action](https://github.com/TimberTrader/chattyApp/blob/master/Screen%20Shot%202019-03-14%20at%2011.12.56%20PM.png)
 
 ## The Project
 It is one of three individual projects that I have created through 5 weeks of Lighthouse Labs’ Web Development Bootcamp.
