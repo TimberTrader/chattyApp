@@ -12,7 +12,7 @@ class Navbar extends Component {
   }
 }
 
-//  eliminates validation errors on props (replaces react proptypes) ... test
+//  eliminates validation errors on props (replaces react proptypes)
 Navbar.propTypes = {
     userCount: function(obj) {
       if(typeof obj === 'object') return null;

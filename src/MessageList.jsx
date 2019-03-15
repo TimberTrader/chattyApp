@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Message from './Message.jsx';
 
 /* iterates over [{messages} either Messages or Notifications]
- rendering each to dispaly container */
+ rendering each to dispaly container  */
 class MessageList extends Component {
   render() {
     let messageDetails = this.props.messages.map(details => {

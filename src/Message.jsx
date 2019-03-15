@@ -12,7 +12,6 @@ class Message extends Component {
     )
   }
 }
-
 //  eliminates validation errors on props (replaces react proptypes)
 Message.propTypes = {
   name: function(obj) {

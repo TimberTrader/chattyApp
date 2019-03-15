@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-/*renders chatbar - allows for TAB (preffered),
-ENTER or 'click in -message' to trigger name change event*/
+/* renders chatbar - allows for TAB (preffered),
+ENTER or 'click in -message' to trigger name change event */
 class ChatBar extends Component {
   changeNameOnEnter = (event) => {
     if (event.key === 'Enter') {

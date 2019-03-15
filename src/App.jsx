@@ -5,7 +5,7 @@ import MessageList from './MessageList.jsx';
 import Message from './Message.jsx';
 import Navbar from './Navbar.jsx';
 
-/* Parent class */
+/* Parent class  state modified to delete old messages and user count */
 class App extends Component {
   constructor(props) {
     super(props);
