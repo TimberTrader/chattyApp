@@ -54,16 +54,17 @@ class App extends Component {
       }
     }
   }
-
-  handleNameChange = (ev) => {
-    const currentUser = { name: newName }
+  // ensures that name change will be handled
+  handleNameChange = (event) => {
+    const currentUser = { name: event.target.value }
     this.setState({ currentUser });
   }
     /* updates state IF user changes name (default is anon) ...
-     send notification to all users who are logged on of name change*/
+     send notification to all users who have connections of name change
+     ... reset to 'Anon' if empty ... now allows almostr any user anme including fales or 0*/
     changeName = (event) => {
         let lastUsername = this.state.currentUser.name;
-        let newUsername = event.target.value || 'Anon';
+        let newUsername = event.target.value !== '' ? event.target.value : 'Anon';
         
         if (lastUsername === newUsername) return;
 
@@ -76,7 +77,8 @@ class App extends Component {
         })
     }
     /* updates state WHEN user adds a chat message (content) ...
-     sends thier name an d content to all users who are logged on of name change*/
+     sends their name and content to all users who have connection ... 
+     will do nothing if chatbar-message is blank*/
     postChat = (event) => {
       const userInput = event.target
       if (event.key === 'Enter' && userInput.value) {

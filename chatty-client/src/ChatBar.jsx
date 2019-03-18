@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 
 /* renders chatbar - allows for TAB (preffered),
-ENTER or 'click in -message' to trigger name change event */
+ENTER or 'click in hatbar-message' to trigger name change event 
+... will always dipslay a username (default = Anon)
+... controlled input displays current state as username (defualt is Anon until changed)
+... allows user to change default value to almost any name*/
 class ChatBar extends Component {
   changeNameOnEnter = (event) => {
     if (event.key === 'Enter') {
