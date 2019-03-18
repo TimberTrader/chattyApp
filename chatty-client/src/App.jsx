@@ -24,7 +24,7 @@ class App extends Component {
     setTimeout(() => {
       const newMessage = {
         type: 'incomingNotification',
-        username: this.currentUser.name,
+        username: this.state.currentUser.name,
         content: 'Welcome to ChattyApp!  Type your name below then TAB and say hello'
       };
       const messages = this.state.messages.concat(newMessage)
@@ -54,25 +54,22 @@ class App extends Component {
       }
     }
   }
-  // ensures that name change will be handled
-  handleNameChange = (event) => {
-    const currentUser = { name: event.target.value }
-    this.setState({ currentUser });
-  }
     /* updates state IF user changes name (default is anon) ...
      send notification to all users who have connections of name change
      ... reset to 'Anon' if empty ... now allows almostr any user anme including fales or 0*/
     changeName = (event) => {
-        let lastUsername = this.state.currentUser.name;
-        let newUsername = event.target.value !== '' ? event.target.value : 'Anon';
-        
-        if (lastUsername === newUsername) return;
+      let lastUsername = this.state.currentUser.name;
+      let newUsername = event.target.value === '' ? 'Anon' : event.target.value;
+      
+      console.log('past if', this.state.currentUser)
+      if (lastUsername === newUsername) return;
 
         this.setState({currentUser: {name: newUsername}}, () => {
           let newJSONContent = {
             type: 'postNotification',
             content: `${lastUsername} changed their username to ${newUsername}`
           }
+
           this.connection.send(JSON.stringify(newJSONContent));
         })
     }
@@ -107,7 +104,6 @@ class App extends Component {
             currentUser={this.state.currentUser}
             postChat={this.postChat}
             changeName={this.changeName}
-            handleNameChange={this.handleNameChange}
             />
         </div>
       );
