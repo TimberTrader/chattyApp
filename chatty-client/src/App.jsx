@@ -24,7 +24,7 @@ class App extends Component {
     setTimeout(() => {
       const newMessage = {
         type: 'incomingNotification',
-        username: '',
+        username: this.currentUser.name,
         content: 'Welcome to ChattyApp!  Type your name below then TAB and say hello'
       };
       const messages = this.state.messages.concat(newMessage)
@@ -54,11 +54,16 @@ class App extends Component {
       }
     }
   }
+
+  handleNameChange = (ev) => {
+    const currentUser = { name: newName }
+    this.setState({ currentUser });
+  }
     /* updates state IF user changes name (default is anon) ...
      send notification to all users who are logged on of name change*/
     changeName = (event) => {
         let lastUsername = this.state.currentUser.name;
-        let newUsername = event.target.value;
+        let newUsername = event.target.value || 'Anon';
         
         if (lastUsername === newUsername) return;
 
@@ -73,14 +78,15 @@ class App extends Component {
     /* updates state WHEN user adds a chat message (content) ...
      sends thier name an d content to all users who are logged on of name change*/
     postChat = (event) => {
-      if (event.key === 'Enter') {
+      const userInput = event.target
+      if (event.key === 'Enter' && userInput.value) {
           let newJSONContent = {
             type: 'postMessage',
             username: this.state.currentUser.name,
-            content: event.target.value
+            content: userInput.value
           }
           this.connection.send(JSON.stringify(newJSONContent));
-          event.target.value = '';
+          userInput.value = '';
      }
     }
     /* sends props and/or function s to children ...
@@ -99,6 +105,7 @@ class App extends Component {
             currentUser={this.state.currentUser}
             postChat={this.postChat}
             changeName={this.changeName}
+            handleNameChange={this.handleNameChange}
             />
         </div>
       );

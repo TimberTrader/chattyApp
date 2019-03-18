@@ -15,8 +15,10 @@ class ChatBar extends Component {
         <input
         className="chatbar-username"
         placeholder="Ur name and TAB to enter message (Optional)"
+        value={this.props.currentUser.name}
         onKeyPress={this.changeNameOnEnter}
         onBlur={this.props.changeName}
+        onChange={this.props.handleNameChange}
         />
         <input
         onKeyPress={this.props.postChat}
