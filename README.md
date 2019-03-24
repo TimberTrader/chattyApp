@@ -1,5 +1,5 @@
 # chattyApp
-a project for LhL Web Dev Bootcamp (winter 2019
+A project for LhL Web Dev Bootcamp (winter 2019)
 
 chattyApp is a single page application (SPA) allowing connected users to chat through text in real time.
 
